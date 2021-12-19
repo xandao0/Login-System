@@ -1,4 +1,4 @@
-.signUp {
+.login {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,7 +9,7 @@
     color: white;
 }
 
-.signUp-inputs { 
+.login-inputs { 
     background-color: #29292E;
     border-radius: 5px;
     display: flex;
@@ -22,13 +22,22 @@
     height: 500px;
 }
 
-.signUp-inputs h1 {
+.login-inputs h1 {
     font-family: 'Roboto Slab';
     font-size: 40px;
     margin-bottom: 20px;
 }
 
-.signUp-inputEmail {
+.login-inputs h4 {
+    font-family: 'Roboto Slab';
+    font-weight: 300;
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #e1e1e6;
+}
+
+.login-loginInputEmail {
     display: flex;
     align-items: center;
     color: gray;
@@ -37,49 +46,14 @@
     padding: 3px;
     width: 98%;
     height: 50px;
-    margin-bottom: 10px;
 }
 
-.signUp-inputName {
-    display: flex;
-    align-items: center;
-    color: gray;
-    background-color: #1A1A1D;
-    border-radius: 5px;
-    padding: 3px;
-    width: 98%;
-    height: 50px;
-    margin-bottom: 10px;
-}
-
-.signUp-inputCPF {
-    display: flex;
-    align-items: center;
-    color: gray;
-    background-color: #1A1A1D;
-    border-radius: 5px;
-    padding: 3px;
-    width: 98%;
-    height: 50px;
-    margin-bottom: 10px;
-}
-
-.signUp-inputEmail svg {
+.login-loginInputEmail svg {
     margin-left: 10px;
     font-size: 25px;
 }
 
-.signUp-inputName svg {
-    margin-left: 10px;
-    font-size: 25px;
-}
-
-.signUp-inputCPF svg {
-    margin-left: 10px;
-    font-size: 25px;
-}
-
-.signUp-inputEmail input {
+.login-loginInputEmail input {
     background: transparent;
     width: 100%;
     outline-width: 0;
@@ -90,29 +64,7 @@
     margin-right: 10px;
 }
 
-.signUp-inputName input {
-    background: transparent;
-    width: 100%;
-    outline-width: 0;
-    color: #E1E1E6;
-    border: none;
-    font-size: 17px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.signUp-inputCPF input {
-    background: transparent;
-    width: 100%;
-    outline-width: 0;
-    color: #E1E1E6;
-    border: none;
-    font-size: 17px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.signUp-inputPassword {
+.login-loginInputPassword {
     display: flex;
     align-items: center;
     color: gray;
@@ -123,15 +75,14 @@
     width: 98%;
     height: 50px;
     border-radius: 5px;
-    margin-bottom: 10px;
 }
 
-.signUp-inputPassword svg {
+.login-loginInputPassword svg {
     margin-left: 10px;
     font-size: 25px;
 }
 
-.signUp-inputPassword input {
+.login-loginInputPassword input {
     background: transparent;
     width: 100%;
     outline-width: 0;
@@ -142,7 +93,7 @@
     margin-right: 10px;
 }
 
-.signUp-inputs button {
+.login-inputs button {
     width: 98%;
     background-color: #202024;
     color: #EFF2F5;
@@ -156,8 +107,13 @@
     outline-width: 0;
 }
 
-.signUp-inputs button:hover {
+.login-inputs button:hover {
     background-color: #121214;
     color: #EFF2F5;
     cursor: pointer;
 }
+
+ .linkLogin {
+     color: #EFF2F5;
+     text-decoration: inherit;
+ }
