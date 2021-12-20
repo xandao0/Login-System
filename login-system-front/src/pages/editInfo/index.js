@@ -1,37 +1,52 @@
-import React, {useState} from "react";
-import { withRouter } from "react-router-dom";
+import React, { useEffect, useState} from "react";
 import api from "../../services/api";
+import decode from 'jwt-decode';
+import { getToken } from '../../services/auth';
 
 import './style.css'
 
-function SignUp(props) {
+function EditInfo(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [name, setName] = useState("")
     const [cpf, setCPF] = useState("")
     const [error, setError] = useState("")
+    const [user, setUser] = useState();
 
+    /*useEffect(() => {
+        const { uid } = decode(getToken());
+        api
+        .get(`/users/${uid}`)
+        .then((response) => setUser(response.data))
+        .catch((err) => {
+            console.error("ops! ocorreu um erro" + err)
+        });
+    }, [])*/
+
+
+    const handleCancel = () => {
+        props.history.push("/userDash");
+    }
          
-    const handleSignUp = async (e) => {
-       e.preventDefault();       
-
+    const handleEdit = async (e) => {
+       e.preventDefault(); 
       
         if (!name || !cpf || !email || !password ) {
-            setError("Preencha todos os campos!");
+            setError("Preencha todos os campos para salvar!");
         }   
         else {
             try {
                 const FD = new FormData()    
-                            
+                const { uid } = decode(getToken());            
                 FD.append('name', name);
                 FD.append('cpf', cpf);               
                 FD.append('email', email);
                 FD.append('password', password);
                 console.log(FD)                
-                await api.post("/users", FD);
+                await api.put(`/users/${uid}`, FD);
                 console.log("Aqui passou")
                 
-                props.history.push("/");
+                props.history.push("/userDash");
             } catch (err) {
                 console.warn(err);
                 setError("Ocorreu um erro ao registrar sua conta.");
@@ -39,65 +54,68 @@ function SignUp(props) {
         }       
     }
     
-        return (
-        <div className="signUp">         
-            <form onSubmit={handleSignUp}>
-                <div className="signUp-inputs">
-                    <h1>Cadastro</h1>
+    return (
+        <div className="editInfo">         
+            
+                <div className="editInfo-inputs">
+                    <h1>Editar</h1>
         
-                    <div className="signUp-inputEmail">    
+                    <div className="editInfo-inputEmail">    
                         Email:            
                         <input
                         type="email"
                         placeholder="Digite um email"
-                        value={email}
+                        //value={user?.email}
                         onChange={e => setEmail(e.target.value)}
                          
                         />
                     </div>
                         
-                    <div className="signUp-inputName">     
+                    <div className="editInfo-inputName">    
                         Nome:            
                         <input
                         
                         type="text"
                         placeholder="Digite seu nome"
-                        value={name}
+                        //value={user?.name}
                         onChange={e => setName(e.target.value)}
                         
                         />
                     </div>
 
-                    <div className="signUp-inputCPF">  
+                    <div className="editInfo-inputCPF">  
                         CPF:              
                         <input
                         type="text"
                         placeholder="Digite seu CPF"
-                        value={cpf}
+                        //value={user?.cpf}
                         onChange={e => setCPF(e.target.value)}
                         
                         />
                     </div>
         
-                    <div className="signUp-inputPassword">   
+                    <div className="editInfo-inputPassword">   
                         Senha:             
                         <input
-                        placeholder="Digite sua senha"
-                        type="password"
-                        value={password}                   
+                        placeholder="Digite sua nova senha"
+                        type="password"                                         
                         onChange={e => setPassword(e.target.value)}
                         
                         />                
                     </div>
         
-                    <button type="submit">
-                        Cadastrar
-                    </button>             
+                    <button onClick={handleEdit}>
+                        Salvar
+                    </button>   
+
+                    <button onClick={handleCancel}>
+                        Cancelar
+                    </button>           
                 
                  </div>
-            </form>
+            
         </div>
-        )    
+    )    
  }
  
- export default withRouter(SignUp);
+ export default EditInfo;

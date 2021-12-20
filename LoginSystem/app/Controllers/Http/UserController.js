@@ -4,12 +4,16 @@ const User = use("App/Models/User")
 
 class UserController {
   async create ({ request }) {
-    const data = request.only(["name", "cpf", "email", "password"])
-    data = {...data, level: '1'}
+    try{
+    let data = request.only(["name", "cpf", "email", "password"])    
+    data = {...data, level: '1', img: " "}
 
-    const user = await User.create(data)
+    const user = await User.create(data) 
 
     return user
+    }catch (err) {
+      console.warn(err)
+    }
   }
 
   async index ({ auth, response }) {

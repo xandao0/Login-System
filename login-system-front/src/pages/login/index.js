@@ -1,17 +1,43 @@
 import React, {useState} from "react";
 import { Link, withRouter } from "react-router-dom";
+import { login } from "../../services/auth";
+import decode from 'jwt-decode';
 
 import api from '../../services/api';
 
 import './style.css'
 
-function Login() {
+function Login(props) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
      
-    const handleLogin = (e) => {
-       e.preventDefault();       
-       
+    const handleLogin = async (e) => {
+       e.preventDefault();          
+
+        if (!email || !password) {
+            setError("Preencha todos os campos para entrar");
+        } 
+        else {
+            try {
+                let response = await api.post("/sessions", { email, password });
+                login(response.data.token);
+
+                const { uid } = decode(response.data.token);
+                response = await api.get(`/users/${uid}`);
+
+                if (response.data.level === 999)
+                    props.history.push("/adminDash");
+                else if (response.data.level === 1)
+                    props.history.push("/userDash");
+                else {
+                    setError("Você foi desativado da empresa.");
+                }
+            } catch (err) {
+                console.warn(err);
+                setError("Houve um problema com o login, verifique suas credenciais.");
+            }
+        }       
     }
  
     return (

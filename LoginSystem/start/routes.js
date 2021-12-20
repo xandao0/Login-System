@@ -21,4 +21,5 @@ Route.get('/', () => {
 })
 
 Route.post('/users', 'UserController.create')
-Route.post('/session', 'SessionController.create')
+Route.post('/sessions', 'SessionController.create')
+Route.resource('users', 'UserController').middleware('auth')
