@@ -1,9 +1,9 @@
 # Login-System
 
 ## Initial Configuration
-With NPM, execute: npm install in 3 folders: In the server folder ("LoginSystem/LoginSystem"), in the front folder ("LoginSystem/login-system-front").
+With NPM, execute: npm install in 2 folders: In the server folder ("LoginSystem/LoginSystem"), in the front folder ("LoginSystem/login-system-front").
 
-After this, set a .env file on the /server folder. It must have the following attributes:
+After this, set a .env file on the /LoginSystem folder. It must have the following attributes:
 ```env
 HOST=127.0.0.1
 PORT=3333
