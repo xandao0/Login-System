@@ -26,13 +26,13 @@ DB_DATABASE=s
 ## Starting the System
 First, migrate the databases using Adonis, then run the server:
 ```shell
-cd {yourPath}/server
+cd {yourPath}/LoginSystem
 adonis migration:run
 adonis serve --dev
 ```
 Then run the client side of the application:
 ```shell
-cd {yourPath}/client
+cd {yourPath}/login-system-front
 npm start
 ```
 The system is ready to use.
